@@ -50,6 +50,7 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
 
 
     fun setUI() {
+
      gameModel?.apply {
          binding.btn0.text = filledPos[0]
          binding.btn1.text = filledPos[1]
@@ -117,14 +118,14 @@ fun updateGameData(model : GameModel){
                 if(
                     filledPos[i[0]] == filledPos[i[1]] &&
                     filledPos[i[1]] == filledPos[i[2]] &&
-                    filledPos[i[0]].isEmpty()
+                    filledPos[i[0]].isNotEmpty()
                 ){
                     gameStatus = GameStatus.FINISHED
                     winner = filledPos[i[0]]
                 }
             }
 
-            if (filledPos.none(){it.isEmpty() }){
+            if (filledPos.none(){it.isEmpty()  }){
                 gameStatus = GameStatus.FINISHED
             }
 
@@ -133,6 +134,7 @@ fun updateGameData(model : GameModel){
     }
     override fun onClick(v: View?) {
         gameModel?.apply {
+
             if(gameStatus !=GameStatus.INPROGRESS){
                 Toast.makeText(applicationContext,"Game not started",Toast.LENGTH_SHORT).show()
                 return
@@ -146,6 +148,5 @@ fun updateGameData(model : GameModel){
                 updateGameData(this)
             }
         }
-            TODO("Not yet implemented")
     }
 }
